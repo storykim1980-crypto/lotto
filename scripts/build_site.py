@@ -14,13 +14,14 @@ GitHub workflow files, and notes are not served as website assets.
 from __future__ import annotations
 
 import shutil
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 DOMAIN = "https://miniloto-navi.com"
 
-# 공개할 HTML 페이지 목록 (메인 + 정책/안내)
+# 공개할 HTML 페이지 목록 (메인 + 정책/안내) — 사이트맵에 포함
 PAGES = [
     ("index.html",      "1.0",  "weekly"),
     ("about.html",      "0.5",  "monthly"),
@@ -31,6 +32,9 @@ PAGES = [
     ("disclaimer.html", "0.4",  "yearly"),
     ("contact.html",    "0.5",  "yearly"),
 ]
+
+# 사이트맵에는 넣지 않지만 배포는 필요한 파일
+EXTRA_FILES = ["404.html", "og-image.jpg"]
 
 # Google AdSense 게시자 ID (ads.txt 는 도메인 루트 /ads.txt 로 접근 가능해야 함)
 ADS_PUB_ID = "pub-3122957517118825"
@@ -48,6 +52,10 @@ def main() -> None:
 
     for name, _priority, _freq in PAGES:
         copy_file(ROOT / name, PUBLIC / name)
+    for name in EXTRA_FILES:
+        src = ROOT / name
+        if src.exists():
+            copy_file(src, PUBLIC / name)
 
     data_src = ROOT / "data"
     data_dst = PUBLIC / "data"
@@ -65,9 +73,11 @@ def main() -> None:
         encoding="utf-8",
     )
 
+    today = date.today().isoformat()
     urls = "\n".join(
         f"""  <url>
     <loc>{DOMAIN}/{'' if name == 'index.html' else name}</loc>
+    <lastmod>{today}</lastmod>
     <changefreq>{freq}</changefreq>
     <priority>{priority}</priority>
   </url>"""
