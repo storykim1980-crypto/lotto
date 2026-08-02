@@ -41,12 +41,35 @@
 - [ ] 일본어 키워드 확인: ミニロト 分析, ミニロト 統計, ミニロト 予想 ツール
 - [ ] OGP 제목/설명 확인
 
-## 6. 다음 단계
+## 6. 언어 표시 (2026-08-02 추가)
 
-- [ ] results.json 분리 준비
-- [ ] GitHub Actions 주 1회 데이터 업데이트 설계
-- [ ] Cloudflare Pages 또는 GitHub Pages 배포 테스트
-- [ ] 일본어 랜딩 페이지 문구 다듬기
+- [ ] 사이트가 **일본어만** 보이는지 확인 (한글 잔여 없음)
+- [ ] 상단의 언어 선택 메뉴가 숨겨져 있는지 확인
+- [ ] 한국어 복원 방법: `index.html` 스크립트 상단 `FEATURE_KOREAN_UI = false` → `true` 한 글자 변경
+
+## 7. 정책 페이지 (애드센스 심사용, 2026-08-02 추가)
+
+- [ ] 푸터 링크 7개가 모두 열리는지 확인: about / privacy / terms / cookies / ads-policy / disclaimer / contact
+- [ ] 각 페이지가 모바일·태블릿·PC에서 읽기 좋은지 확인
+- [ ] 각 페이지 푸터에서 다른 정책 페이지로 이동 가능한지 확인
+
+## 8. 광고(AdSense)
+
+- [ ] `https://miniloto-navi.com/ads.txt` 접근 시 `google.com, pub-3122957517118825, DIRECT, f08c47fec0942fa0` 확인
+- [ ] 페이지 소스에 `ca-pub-3122957517118825` 로더 확인
+- [ ] 승인 전: 광고 자리에 "広告" 라벨 + 빈 박스만 보이는지 확인
+- [ ] 승인 후: 광고 단위 slot 3개를 `index.html`의 `data-ad-slot` 값에 교체
+- [ ] 자세한 순서: `GOOGLE_SETUP_GUIDE.md` 참고
+
+## 9. 다음 단계
+
+- [x] results.json 분리
+- [x] GitHub Actions 주 1회 데이터 업데이트 (BACKUP_MINILOTO_URL secret 필요)
+- [x] Cloudflare Pages 배포 설정 (build: `python3 scripts/build_site.py`, output: `public`)
+- [x] 일본어 랜딩 페이지 문구 다듬기
+- [ ] 구글 서치콘솔 등록 + sitemap.xml 제출
+- [ ] 애드센스 심사 요청 → 승인 후 slot 교체
+- [ ] (선택) og:image 대표 이미지 제작
 
 
 ---
@@ -56,3 +79,4 @@
 - 사이트명: ミニロト分析ナビ / 미니로또 분석 내비
 - 도메인: https://miniloto-navi.com/
 - 문의 이메일: storykim1980@gmail.com
+- 구글 게시자 ID: pub-3122957517118825
