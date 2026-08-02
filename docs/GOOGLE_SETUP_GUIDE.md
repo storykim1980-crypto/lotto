@@ -122,3 +122,49 @@
 - [ ] (선택) Cloudflare Email Routing으로 `contact@miniloto-navi.com` → storykim1980@gmail.com 전달 설정
 
 막히는 화면이 나오면 **스크린샷**을 보여 주세요. 어느 버튼을 눌러야 할지 바로 알려드립니다.
+
+
+---
+
+## 📅 2026-08-02 추가: 검색엔진 최적화(SEO) 적용 완료 + 오늘 등록 절차
+
+### 이미 사이트에 적용된 SEO 항목 (추가 작업 불필요)
+
+| 항목 | 내용 |
+|---|---|
+| robots 메타 | `index,follow,max-image-preview:large,max-snippet:-1` (검색 미리보기·이미지 최대 허용) |
+| hreflang | 일본어 사이트임을 명시 (`ja` + `x-default`) — 정책상 한국어 잔재 없음 확인 완료 |
+| OGP 완전판 | og:title/description/url/locale/site_name + **og:image 1200×630** (공유 썸네일 직접 제작) |
+| Twitter 카드 | `summary_large_image` + 전용 이미지 |
+| 구조화 데이터 | WebSite + Organization + **WebApplication**(무료 앱 표기) JSON-LD @graph |
+| 404 페이지 | 브랜드 디자인 404.html (noindex 처리) — Pages에서 자동 사용 |
+| 사이트맵 | 8개 URL + lastmod 자동 삽입 (`python3 scripts/build_site.py` 실행일 기준) |
+| 표기 준수 | 当選保証なし·非公式·情報提供のみ (코어 업데이트의 신뢰성 평가 대응) |
+| 성능 | 웹폰트 display=swap, 이미지 없는 가벼운 페이지, HTTPS + 캐시 헤더 |
+
+### 오늘 등록 순서 (30분)
+
+**1) 구글 서치콘솔 (반드시)**
+- 추천 인증: **도메인 속성 + DNS TXT 레코드** 방식
+  1. search.google.com/search-console → 속성 추가 → **「ドメイン」** 에 `miniloto-navi.com` 입력
+  2. 나오는 TXT 값을 복사 → Cloudflare 대시보드 → 해당 도메인 → **DNS → 레코드** → 「레코드 추가」 → 유형 **TXT**, 이름 `@`, 내용에 붙여넣기 → 저장
+  3. 서치콘솔로 돌아와 「확인」→ 끝 (재배포 필요 없음! Cloudflare라 보통 몇 분 안에 인식)
+- (대안) HTML 태그 방식: `index.html` 상단에 준비된 주석 자리에 코드 삽입 후 push
+- 완료 후 왼쪽 메뉴 **「Sitemap」→ `sitemap.xml` 입력 → 제출**
+
+**2) 야후 재팬 (Yahoo! JAPAN) — 별도 등록 절차 없음**
+- 야후 검색은 **구글 검색엔진을 그대로 사용**합니다 → 구글에 색인되면 야후에도 자동으로 나옵니다 (보통 수일~수주 시차)
+- 그래서 할 일은 1)번 구글 등록이 전부입니다
+
+**3) 빙 웹마스터 (5분, 선택 추천)**
+- bing.com/webmasters → 구글 서치콘솔 계정으로 로그인 → **가져오기(import)** → 사이트맵 자동 이전
+
+**4) 검증 도구로 최종 확인 (2분)**
+- 리치 결과 테스트: https://search.google.com/test/rich-results → 사이트 URL 입력 → WebSite/WebApplication 인식 확인
+- 모바일 사용성: https://pagespeed.web.dev/ → URL 입력
+
+**5) 애드센스 심사 요청** — 섹션 4 참고 (사이트가 열린 상태라면 오늘 바로 요청 가능)
+
+### 등록 후 기대 흐름 (현실적 안내)
+- 색인 시작: 보통 수일 이내 / 검색 상위 노출: 콘텐츠 자립까지 **4~12주** 정도가 표준
+- 초기엔 `site:miniloto-navi.com` 검색으로 색인 여부를 확인하세요
