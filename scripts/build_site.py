@@ -57,6 +57,17 @@ def main() -> None:
         if src.exists():
             copy_file(src, PUBLIC / name)
 
+    # 블로그(コラム) 페이지: blog/ 아래 전체를 복사하고 사이트맵에도 추가
+    blog_urls: list[tuple[str, str, str]] = []  # (경로, 우선도, 갱신주기)
+    blog_dir = ROOT / "blog"
+    if blog_dir.exists():
+        for f in sorted(blog_dir.glob("*.html")):
+            copy_file(f, PUBLIC / "blog" / f.name)
+            if f.name == "index.html":
+                blog_urls.append(("blog/index.html", "0.8", "weekly"))
+            else:
+                blog_urls.append((f"blog/{f.name}", "0.7", "monthly"))
+
     data_src = ROOT / "data"
     data_dst = PUBLIC / "data"
     data_dst.mkdir(parents=True, exist_ok=True)
@@ -74,6 +85,7 @@ def main() -> None:
     )
 
     today = date.today().isoformat()
+    sitemap_rows = PAGES + blog_urls
     urls = "\n".join(
         f"""  <url>
     <loc>{DOMAIN}/{'' if name == 'index.html' else name}</loc>
@@ -81,7 +93,7 @@ def main() -> None:
     <changefreq>{freq}</changefreq>
     <priority>{priority}</priority>
   </url>"""
-        for name, priority, freq in PAGES
+        for name, priority, freq in sitemap_rows
     )
     (PUBLIC / "sitemap.xml").write_text(
         f"""<?xml version="1.0" encoding="UTF-8"?>
