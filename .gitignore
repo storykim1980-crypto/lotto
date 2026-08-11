@@ -1,0 +1,7 @@
+# 빌드 결과물 (Cloudflare가 자동 생성 → GitHub에 올리지 않음)
+public/
+# Python 임시 캐시
+__pycache__/
+*.pyc
+# 개인 스크린샷
+uploads/
