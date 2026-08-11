@@ -33,7 +33,7 @@ NAV_LINKS = [
 SHELL_CSS = '''
 :root{--bg:#f3f6fb;--paper:#fff;--ink:#111827;--muted:#64748b;--line:#e2e8f0;--navy:#071a33;--navy2:#10294a;--blue:#2563eb;--red:#e11d48;--gold:#f2b705;--green:#059669;--radius:16px;}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,"Yu Gothic",YuGothic,sans-serif;font-size:15px;line-height:1.9;color:var(--ink);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;background:linear-gradient(180deg,#f8fafc,#eef3f8);}
+body{margin:0;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,"Yu Gothic",YuGothic,sans-serif;font-size:15px;line-height:1.9;color:var(--ink);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-feature-settings:"palt";background:linear-gradient(180deg,#f8fafc,#eef3f8);}
 a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
 .topbar-line{height:5px;background:linear-gradient(90deg,var(--red),var(--gold),var(--green),var(--blue))}
 header.site{background:linear-gradient(135deg,var(--navy),#0b2344 60%,#12365c);color:#fff;padding:22px 0}
