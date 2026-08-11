@@ -262,6 +262,7 @@ main{padding:22px 0 60px}.screen{display:none}.screen.active{display:block}.grid
      false → true 로 한 군데만 바꾸면 즉시 복원됩니다.
    ========================================================= */
 body.ja-only #langMode{display:none!important}
+body.ja-only #headerTools{display:none!important}
 body.ja-only .ko{display:none!important}
 
 /* =========================================================
@@ -350,13 +351,11 @@ body.no-ads .ad-slot{display:none!important}
           <p><span class="ko">신뢰형 미니로또 분석 내비 · 무료 통계 검증 도구</span><span class="ja">信頼型ミニロト分析ナビ · 無料統計検証ツール</span></p>
         </div>
       </div>
-      <div class="tools">
+      <div class="tools" id="headerTools">
         <select id="langMode" class="select" title="Language" aria-label="言語選択">
           <option value="ja">日本語</option>
           <option value="ko">한국어</option>
         </select>
-        <button class="btn manual-cta" data-goto="manual"><span class="ko">처음 사용 가이드</span><span class="ja">初めてのガイド</span></button>
-        <button class="btn" id="printBtn"><span class="ko">인쇄</span><span class="ja">印刷</span></button>
       </div>
     </div>
     <div class="notice">
@@ -368,11 +367,6 @@ body.no-ads .ad-slot{display:none!important}
         <strong><span class="ko">중요 고지</span><span class="ja">重要なお知らせ</span></strong>
         <p class="muted small" style="margin:8px 0 0"><span class="ko">복권은 무작위 확률 게임입니다. 본 도구는 당첨을 보장하지 않으며, 통계 기반 참고·학습용입니다. 실제 구매 전 공식 발표와 대조하세요.</span><span class="ja">宝くじはランダムな確率ゲームです。本ツールは当選を保証せず、統計ベースの参考・学習用です。購入前に公式発表をご確認ください。</span></p>
       </div>
-    </div>
-    <div class="hero-subgrid">
-      <div class="hero-mini"><b><span class="ko">밝고 신뢰감 있는 일본 미니로또 통계 사이트</span><span class="ja">明るく信頼できる日本ミニロト統計サイト</span></b><span><span class="ko">최신 결과와 과거 데이터를 투명하게 확인</span><span class="ja">最新結果と過去データを透明に確認</span></span></div>
-      <div class="hero-mini"><b><span class="ko">무료이지만 유료 서비스처럼 정돈된 분석 도구</span><span class="ja">無料でも有料級に整った分析ツール</span></b><span><span class="ko">통계·백테스트·커버리지·인쇄까지 한 곳에서</span><span class="ja">統計・バックテスト・カバレッジ・印刷まで</span></span></div>
-      <div class="hero-mini"><b><span class="ko">과장 없이, 데이터와 검증을 보여주는 로또 전문 사이트</span><span class="ja">誇張せず、データと検証を見せるミニロト専門サイト</span></b><span><span class="ko">당첨 보장이 아닌 의사결정 지원</span><span class="ja">当選保証ではなく判断支援</span></span></div>
     </div>
   </div>
 </header>
@@ -397,17 +391,6 @@ body.no-ads .ad-slot{display:none!important}
 <div class="wrap"><div class="ad-slot ad-top no-print"><ins class="adsbygoogle" style="display:block;min-height:96px;color:#cbd5e1;font-size:12px;text-align:center;padding-top:38px" data-ad-client="ca-pub-3122957517118825" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true">広告スペース</ins></div></div>
 <main class="wrap">
   <section class="screen active" id="screen-dashboard">
-    <div class="pro-section-head dashboard-titlebar">
-      <div>
-        <div class="pro-eyebrow">MINILOTO ANALYSIS NAVI</div>
-        <div class="pro-title"><span class="ko">일본 미니로또 분석 내비</span><span class="ja">ミニロト分析ナビ</span></div>
-        <p class="pro-desc"><span class="ko">밝고 신뢰감 있는 일본 미니로또 통계 사이트. 무료이지만 유료 서비스처럼 정돈된 분석 도구. 과장 없이 데이터와 검증을 보여주는 로또 전문 사이트입니다.</span><span class="ja">明るく信頼できる日本ミニロト統計サイト。無料でも有料級に整った分析ツール。誇張せず、データと検証を見せるミニロト専門サイトです。</span></p>
-      </div>
-      <div class="dashboard-side">
-        <div class="premium-trust-card"><div class="premium-seal">✓</div><div><b><span class="ko">투명성 우선</span><span class="ja">透明性重視</span></b><span><span class="ko">공개 데이터 · 랜덤 기준선 · 공식 확인 안내</span><span class="ja">公開データ · ランダム基準線 · 公式確認案内</span></span></div></div>
-        <div class="dashboard-actions"><button class="btn" data-goto="predict"><span class="ko">번호 생성 시작</span><span class="ja">数字生成を開始</span></button><button class="btn secondary" data-goto="manual"><span class="ko">사용법</span><span class="ja">使い方</span></button></div>
-      </div>
-    </div>
 
     <div class="dashboard-hero-grid">
       <div class="card dashboard-latest-card">
@@ -416,6 +399,8 @@ body.no-ads .ad-slot{display:none!important}
       </div>
       <div id="weeklyTopRibbon" class="premium-ribbon dashboard-recommend"></div>
     </div>
+
+    <div class="dashboard-actions" style="margin-top:14px"><button class="btn" data-goto="predict"><span class="ko">번호 생성 시작</span><span class="ja">数字生成を開始</span></button><button class="btn secondary" data-goto="manual"><span class="ko">사용 가이드 보기</span><span class="ja">使い方ガイド</span></button></div>
 
     <div class="grid cols-4 dashboard-metrics" id="summaryCards"></div>
 
@@ -478,6 +463,13 @@ body.no-ads .ad-slot{display:none!important}
         <div class="card"><h3><span class="ko">장기 미출현 TOP 8</span><span class="ja">長期未出現 TOP 8</span></h3><div id="overdueList" class="bar-list"></div></div>
         <div class="card"><h3><span class="ko">상성 페어 TOP 8</span><span class="ja">相性ペア TOP 8</span></h3><div id="pairList" class="bar-list"></div></div>
       </div>
+    </div>
+
+    <!-- 헤더에서 이동: 사이트 소개 카드 3장 -->
+    <div class="hero-subgrid" style="margin-top:14px">
+      <div class="hero-mini"><b><span class="ko">밝고 신뢰감 있는 일본 미니로또 통계 사이트</span><span class="ja">明るく信頼できる日本ミニロト統計サイト</span></b><span><span class="ko">최신 결과와 과거 데이터를 투명하게 확인</span><span class="ja">最新結果と過去データを透明に確認</span></span></div>
+      <div class="hero-mini"><b><span class="ko">무료이지만 유료 서비스처럼 정돈된 분석 도구</span><span class="ja">無料でも有料級に整った分析ツール</span></b><span><span class="ko">통계·백테스트·커버리지·인쇄까지 한 곳에서</span><span class="ja">統計・バックテスト・カバレッジ・印刷まで</span></span></div>
+      <div class="hero-mini"><b><span class="ko">과장 없이, 데이터와 검증을 보여주는 로또 전문 사이트</span><span class="ja">誇張せず、データと検証を見せるミニロト専門サイト</span></b><span><span class="ko">당첨 보장이 아닌 의사결정 지원</span><span class="ja">当選保証ではなく判断支援</span></span></div>
     </div>
   </section>
 
@@ -1599,7 +1591,7 @@ function initManualNext(){const latest=state.data[state.data.length-1]; $('manua
 function manualSave(){const row={draw:Number($('manualDraw').value),date:$('manualDate').value.trim(),nums:['N1','N2','N3','N4','N5'].map(x=>Number($(`manual${x}`).value)),bonus:Number($('manualBonus').value)}; const norm=normalizeData([row]); if(!norm.length){toast(label('입력값을 확인하세요. 본숫자 5개는 중복 없이 1~31, BO도 1~31이어야 합니다.', '入力値を確認してください。本数字5個は重複なし1〜31、BOも1〜31です。'),4500); return;} const map=new Map(state.data.map(r=>[r.draw,r])); map.set(norm[0].draw,norm[0]); state.data=normalizeData([...map.values()]); saveData(); renderAll(); toast(label('저장했습니다.', '保存しました。'));}
 
 function bindEvents(){
-  $('langMode').addEventListener('change',e=>setLang(e.target.value)); $('dashCsvBtn')?.addEventListener('click',()=>exportCSV()); $('dashJsonBtn')?.addEventListener('click',()=>exportJSON()); $('printBtn').addEventListener('click',()=>window.print()); $('doPrintBtn').addEventListener('click',()=>window.print());
+  $('langMode').addEventListener('change',e=>setLang(e.target.value)); $('dashCsvBtn')?.addEventListener('click',()=>exportCSV()); $('dashJsonBtn')?.addEventListener('click',()=>exportJSON()); $('printBtn')?.addEventListener('click',()=>window.print()); $('doPrintBtn').addEventListener('click',()=>window.print());
   $('tabbar').addEventListener('click',e=>{const b=e.target.closest('.tab'); if(b) switchScreen(b.dataset.screen)});
   document.body.addEventListener('click',e=>{const g=e.target.closest('[data-goto]'); if(g){switchScreen(g.dataset.goto); window.scrollTo?.(0,0);}});
   $('dataSearch').addEventListener('input',renderDataTable); $('dataLimit').addEventListener('change',renderDataTable);

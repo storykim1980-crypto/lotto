@@ -301,7 +301,12 @@ def main() -> None:
         "updatedDraws": updated,
         "previousLatestDraw": before_latest,
     }
-    save(new_rows, meta)
+    # ★ 변화가 있을 때만 파일 저장 → 불필요한 커밋/재배포 방지
+    if updated or not DATA_JSON.exists():
+        save(new_rows, meta)
+        print(f"saved new/updated draws: {updated}")
+    else:
+        print("no changes — data files left untouched (no commit will be made)")
     print(json.dumps(meta, ensure_ascii=False, indent=2))
 
 
