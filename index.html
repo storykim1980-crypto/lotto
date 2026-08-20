@@ -268,7 +268,7 @@ main{padding:22px 0 60px}.screen{display:none}.screen.active{display:block}.grid
 
 
 /* beginner manual extension */
-.beginner-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}.beginner-flow>div{padding:13px;border-radius:14px;background:#f8fafc;border:1px solid var(--line)}.beginner-flow b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff}.beginner-flow strong{display:block;margin-top:8px;color:var(--navy)}.beginner-flow p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.55}.simple-feature-list{display:grid;gap:8px}.simple-feature-list>div{padding:10px 0;border-bottom:1px solid #eef2f7}.simple-feature-list b{display:block;color:var(--navy)}.simple-feature-list p{margin:4px 0 0;color:var(--muted);font-size:12px}.simple-term-list{display:grid;gap:7px}.simple-term-list>div{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #eef2f7}.simple-term-list b{color:var(--red-dark)}.simple-term-list span{color:var(--muted);font-size:12px}.example-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.example-steps>div{padding:12px;border-radius:14px;background:#fffdf7;border:1px solid #f1dfac}.example-steps span:first-child{display:inline-flex;border-radius:999px;padding:3px 7px;background:var(--gold);color:#3f2600;font-weight:950;font-size:11px}.example-steps p{margin:8px 0 0;color:#4b5563;font-size:12px;line-height:1.55}
+.beginner-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}.beginner-flow>div{padding:13px;border-radius:14px;background:#f8fafc;border:1px solid var(--line)}.beginner-flow b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff}.beginner-flow strong{display:block;margin-top:8px;color:var(--navy)}.beginner-flow p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.55}.simple-feature-list{display:grid;gap:8px}.simple-feature-list>div{padding:10px 0;border-bottom:1px solid #eef2f7}.simple-feature-list b{display:block;color:var(--navy)}.simple-feature-list p{margin:4px 0 0;color:var(--muted);font-size:12px}.simple-term-list{display:grid;gap:7px}.simple-term-list>div{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #eef2f7}.simple-term-list b{color:var(--red-dark)}.simple-term-list span{color:var(--muted);font-size:12px}.example-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.example-steps>div{padding:12px;border-radius:14px;background:#fffdf7;border:1px solid #f1dfac}.example-steps span:first-child{display:inline-flex;border-radius:999px;padding:3px 7px;background:var(--gold);color:#3f2600;font-weight:950;font-size:11px}.example-steps p{margin:8px 0 0;color:#4b5563;font-size:12px;line-height:1.55}
 @media(max-width:1024px){.beginner-flow,.example-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.simple-term-list>div{grid-template-columns:1fr}}
 @media(max-width:640px){.beginner-flow,.example-steps{grid-template-columns:1fr}}
 
@@ -355,6 +355,26 @@ body.no-ads .ad-slot{display:none!important}
 @media(max-width:1024px){.site-footer .footer-grid{grid-template-columns:1fr 1fr}.site-footer .footer-grid>div:first-child{grid-column:1/-1}}
 @media(max-width:640px){.site-footer .footer-grid{grid-template-columns:1fr 1fr;gap:18px 14px;padding:24px 0 18px}.site-footer .footer-grid>div:first-child{grid-column:1/-1}}
 
+
+/* =========================================================
+   モバイルヘッダー精密調整 (모바일 헤더·탭 정밀 조정)
+   - 로고 축소 + 헤더 여백 압축: 첫 화면에서 콘텐츠가 더 빨리 등장
+   - 탭 메뉴: 균일 간격 + 중앙 정렬 줄바꿈 + 콤팩트 높이
+   ========================================================= */
+@media(max-width:900px){
+  .tabbar{flex-wrap:wrap;gap:6px;overflow-x:visible;padding:9px 0;justify-content:center}
+  .tab{font-size:12px;line-height:1;padding:9px 11px;min-height:38px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+}
+@media(max-width:640px){
+  header.hero{padding:10px 0 12px}
+  .topbar{padding:12px 14px;border-radius:16px;gap:10px;display:flex;flex-wrap:wrap}
+  .brand{gap:10px;min-width:0}
+  .logo{width:40px;height:40px;border-radius:12px;font-size:17px;border-width:1.5px}
+  .brand h1{font-size:22px;letter-spacing:-.02em}
+  .brand p{font-size:11.5px;margin-top:3px}
+  nav.tabs{position:static}
+  .tab{font-size:11.5px;padding:8px 10px;min-height:36px}
+}
 </style>
 </head>
 <body class="lang-ja no-ads">
@@ -494,7 +514,7 @@ body.no-ads .ad-slot{display:none!important}
           <div><b>1</b><p><span class="ko">대시보드에서 최신 회차와 상금 데이터를 확인합니다.</span><span class="ja">ダッシュボードで最新回と賞金データを確認します。</span></p></div>
           <div><b>2</b><p><span class="ko">참고 점수 TOP 10과 빠른 진단을 참고합니다.</span><span class="ja">参考スコアTOP10とクイック診断を参考にします。</span></p></div>
           <div><b>3</b><p><span class="ko">번호 생성에서 균형형 10구로 번호를 생성합니다.</span><span class="ja">数字生成でバランス型10口を生成します。</span></p></div>
-          <div><b>4</b><p><span class="ko">전문 분석에서 조합 밸런스와 백테스트를 확인합니다.</span><span class="ja">専門分析で組み合わせバランスとバックテストを確認します。</span></p></div>
+          <div><b>4</b><p><span class="ko">고급/백테스트에서 그 방식이 과거에 어느 정도 맞았는지 검증합니다.</span><span class="ja">高度/バックテストでその方法が過去にどれほど一致したか検証します。</span></p></div>
           <div><b>5</b><p><span class="ko">마크시트 인쇄 후 추첨 뒤 당첨 확인에서 결과를 봅니다.</span><span class="ja">マークシート印刷後、抽選後に当選確認で結果を見ます。</span></p></div>
         </div>
       </div>
@@ -503,10 +523,14 @@ body.no-ads .ad-slot{display:none!important}
         <div class="menu-role-list">
           <div><b><span class="ko">대시보드</span><span class="ja">ダッシュボード</span></b><span><span class="ko">최신 결과, 참고 점수, 상금 요약</span><span class="ja">最新結果、参考スコア、賞金サマリー</span></span></div>
           <div><b><span class="ko">데이터</span><span class="ja">データ</span></b><span><span class="ko">전체 결과 DB, CSV/JSON, 수동 업데이트</span><span class="ja">全結果DB、CSV/JSON、手動更新</span></span></div>
-          <div><b><span class="ko">통계/상성</span><span class="ja">統計/相性</span></b><span><span class="ko">출현, 결석, 위치별, 페어 분석</span><span class="ja">出現、未出現、位置別、ペア分析</span></span></div>
+          <div><b><span class="ko">통계/상성</span><span class="ja">統計/相性</span></b><span><span class="ko">출현, 미출현, 위치별, 페어 분석</span><span class="ja">出現、未出現、位置別、ペア分析</span></span></div>
+          <div><b><span class="ko">고급/백테스트</span><span class="ja">高度/バックテスト</span></b><span><span class="ko">조건별 과거 일치율, 전략의 과거 검증</span><span class="ja">条件別の過去一致率、戦略の過去検証</span></span></div>
           <div><b><span class="ko">전문 분석</span><span class="ja">専門分析</span></b><span><span class="ko">상금, 조건부 상성, 주기, 밸런스 체크</span><span class="ja">賞金、条件付き相性、周期、バランスチェック</span></span></div>
+          <div><b><span class="ko">기법 연구</span><span class="ja">技法研究</span></b><span><span class="ko">예산별 이론 확률, 기대값, 실전 기법</span><span class="ja">予算別の理論確率、期待値、実用技法</span></span></div>
           <div><b><span class="ko">번호 생성</span><span class="ja">数字生成</span></b><span><span class="ko">조건 기반 조합 생성</span><span class="ja">条件ベースの組み合わせ生成</span></span></div>
+          <div><b><span class="ko">커버리지</span><span class="ja">カバレッジ</span></b><span><span class="ko">후보 숫자를 여러 조합으로 효율 분산</span><span class="ja">候補数字を複数の組に効率よく分散</span></span></div>
           <div><b><span class="ko">당첨 확인</span><span class="ja">当選確認</span></b><span><span class="ko">내 번호 등급과 당첨금 확인</span><span class="ja">自分の数字の等級と賞金確認</span></span></div>
+          <div><b><span class="ko">마크시트/인쇄</span><span class="ja">マークシート/印刷</span></b><span><span class="ko">구매 전 확인용 인쇄표 (수동 마킹 보조)</span><span class="ja">購入前の確認用印刷表（手動マーク補助）</span></span></div>
         </div>
       </div>
     </div>
@@ -534,6 +558,7 @@ body.no-ads .ad-slot{display:none!important}
           <div><b><span class="ko">백테스트</span><span class="ja">バックテスト</span></b><p><span class="ko">이 방법을 과거에 썼다면 결과가 어땠을지 실험하는 기능입니다.</span><span class="ja">この方法を過去に使ったらどうだったかを実験する機能です。</span></p></div>
           <div><b><span class="ko">커버리지</span><span class="ja">カバレッジ</span></b><p><span class="ko">후보 숫자 안에서 여러 조합을 고르게 나누는 도구입니다.</span><span class="ja">候補数字の中で複数の組み合わせを広く分ける道具です。</span></p></div>
           <div><b><span class="ko">당첨 확인</span><span class="ja">当選確認</span></b><p><span class="ko">내 번호가 해당 회차에서 몇 등인지, 당첨금은 얼마인지 확인합니다.</span><span class="ja">自分の数字がその回で何等か、賞金はいくらか確認します。</span></p></div>
+          <div><b><span class="ko">마크시트 인쇄</span><span class="ja">マークシート印刷</span></b><p><span class="ko">조합을 인쇄해 매장에서 마킹할 때 씁니다. 공식 양식과 완전히 같지는 않은 보조 인쇄표입니다.</span><span class="ja">組み合わせを印刷して店舗でのマークに使います。公式用紙と完全同一ではない補助印刷表です。</span></p></div>
         </div>
       </div>
       <div class="card">
@@ -558,9 +583,18 @@ body.no-ads .ad-slot{display:none!important}
         <div><span>STEP 2</span><p><span class="ko">번호 생성에서 기본값을 그대로 둡니다: 균형형, 10구, 합계 55~105, 홀수 3개.</span><span class="ja">数字生成で初期値のままにします。バランス型、10口、合計55〜105、奇数3個。</span></p></div>
         <div><span>STEP 3</span><p><span class="ko">만약 꼭 넣고 싶은 숫자가 있으면 고정 숫자에 입력합니다. 빼고 싶은 숫자는 제외 숫자에 입력합니다.</span><span class="ja">入れたい数字があれば固定数字に入力します。外したい数字は除外数字に入力します。</span></p></div>
         <div><span>STEP 4</span><p><span class="ko">생성 결과에서 A/B/C 밸런스와 합계·홀짝·구간을 보고 마음에 드는 조합만 인쇄목록에 추가합니다.</span><span class="ja">生成結果のバランス、合計、奇偶、ゾーンを見て、気に入った組だけ印刷リストに追加します。</span></p></div>
-        <div><span>STEP 5</span><p><span class="ko">추첨 후 당첨 확인에서 내 번호를 붙여넣고 등수와 당첨금을 확인합니다.</span><span class="ja">抽選後、当選確認で自分の数字を貼り付け、等級と賞金を確認します。</span></p></div>
+        <div><span>STEP 5</span><p><span class="ko">마크시트/인쇄 탭에서 인쇄목록을 열어 인쇄합니다. 매장에서 볼 때 사용하세요.</span><span class="ja">マークシート/印刷タブで印刷リストを開いて印刷します。店舗で見るのに使います。</span></p></div>
+        <div><span>STEP 6</span><p><span class="ko">추첨 후 당첨 확인에서 내 번호를 붙여넣고 등수와 당첨금을 확인합니다.</span><span class="ja">抽選後、当選確認で自分の数字を貼り付け、等級と賞金を確認します。</span></p></div>
       </div>
       <div class="dangerbox small" style="margin-top:12px"><span class="ko">중요: 이 사이트는 번호 선택을 도와주는 도구입니다. 당첨을 보장하지 않으며, 무리한 구매를 권하지 않습니다.</span><span class="ja">重要: このサイトは数字選択を支援する道具です。当選を保証せず、無理な購入をおすすめしません。</span></div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2><span class="ko">초보자가 자주 묻는 질문</span><span class="ja">初心者のよくある質問</span></h2>
+      <details class="guide-detail"><summary><span class="ko">이 도구를 쓰면 더 잘 맞나요?</span><span class="ja">このツールを使うと当たりやすくなりますか？</span></summary><div class="body"><span class="ko">아닙니다. 추첨은 무작위라 어떤 방법이든 확률은 같습니다. 이 도구는 과거 데이터를 정리하고 조건을 검증해서, 사용자가 납득하며 숫자를 고르게 돕는 보조 도구입니다.</span><span class="ja">いいえ。抽せんは無作為なので、どの方法でも確率は同じです。このツールは過去データを整理し条件を検証して、利用者が納得して数字を選ぶ助けをする補助道具です。</span></div></details>
+      <details class="guide-detail"><summary><span class="ko">무료인가요? 회원가입은?</span><span class="ja">無料ですか？会員登録は？</span></summary><div class="body"><span class="ko">완전 무료이며 회원가입도 없습니다. 데이터 전체를 CSV/JSON으로도 공개합니다.</span><span class="ja">完全無料で会員登録もありません。データ全体をCSV/JSONでも公開しています。</span></div></details>
+      <details class="guide-detail"><summary><span class="ko">데이터는 정확한가요?</span><span class="ja">データは正確ですか？</span></summary><div class="body"><span class="ko">공개 결과를 바탕으로 매주 자동 갱신합니다. 다만 비공식이므로 구매·환급 전에는 반드시 공식 발표로 최종 확인하세요.</span><span class="ja">公開結果をもとに毎週自動更新しています。ただし非公式のため、購入・換金前には必ず公式発表で最終確認してください。</span></div></details>
+      <details class="guide-detail"><summary><span class="ko">추천 번호를 알려주나요?</span><span class="ja">おすすめの数字を教えてくれますか？</span></summary><div class="body"><span class="ko">특정 번호를 추천하지 않습니다. 합계·홀짝·제외 숫자 같은 조건을 직접 정해서 조합을 만드는 것이 기본 사용법입니다. 처음이라면 초기값(균형형·10구) 그대로 생성해 보세요.</span><span class="ja">特定の数字は推薦しません。合計・奇偶・除外数字などの条件を自分で決めて組み合わせを作るのが基本の使い方です。初めてなら初期値（バランス・10口）のまま生成してみてください。</span></div></details>
     </div>
 
     <div class="card" style="margin-top:14px">
