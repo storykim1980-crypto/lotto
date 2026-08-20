@@ -1,0 +1,14 @@
+# ミニロト分析ナビ robots.txt
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://miniloto-navi.com/sitemap.xml
