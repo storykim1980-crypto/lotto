@@ -375,6 +375,40 @@ body.no-ads .ad-slot{display:none!important}
   nav.tabs{position:static}
   .tab{font-size:11.5px;padding:8px 10px;min-height:36px}
 }
+
+/* =========================================================
+   MOBILE MENU REDESIGN
+   - PC (>=901px): keep existing horizontal tab strip
+   - Mobile (<=900px): sticky slim menu bar that opens a uniform grid panel
+   - Header slimmed down on small screens (logo 34px / title 19px)
+========================================================= */
+.mobile-menu-bar{display:none}
+@media(max-width:900px){
+  header.hero{padding:8px 0}
+  .mobile-menu-bar{display:block;position:sticky;top:0;z-index:30;background:linear-gradient(135deg,var(--navy),#0b2344 60%,#12365c);box-shadow:0 10px 24px rgba(7,26,51,.20)}
+  .mobile-menu-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:transparent;border:0;color:#fff;font-size:13.5px;font-weight:900;letter-spacing:.03em;cursor:pointer;font-family:inherit}
+  .mobile-menu-btn .mmb-left{display:inline-flex;align-items:center;gap:8px}
+  .mobile-menu-btn .mmb-right{display:inline-flex;align-items:center;gap:7px;color:#c7d8f5;font-size:12.5px;font-weight:800}
+  .mobile-menu-btn .mmb-right b{color:#fff;font-weight:900}
+  .mobile-menu-btn .chev{transition:transform .18s ease}
+  .mobile-menu-btn.open .chev{transform:rotate(180deg)}
+  nav.tabs{position:static;border-bottom:0;box-shadow:none}
+  nav.tabs #tabbar{display:none}
+  nav.tabs.open{border-bottom:1px solid var(--line);box-shadow:0 18px 32px rgba(15,23,42,.12)}
+  nav.tabs.open #tabbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-bottom:12px}
+  nav.tabs .tab{border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 6px;font-size:12.5px;line-height:1.2;font-weight:800;color:#334155;min-height:46px;display:flex;align-items:center;justify-content:center;text-align:center;white-space:normal}
+  nav.tabs .tab.active{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-color:transparent;box-shadow:0 8px 18px rgba(37,99,235,.22)}
+}
+@media(max-width:640px){
+  .topbar{padding:9px 12px;border-radius:14px;gap:8px}
+  .brand{gap:9px}
+  .logo{width:34px;height:34px;border-radius:10px;font-size:15px;border-width:1.5px}
+  .brand h1{font-size:19px;letter-spacing:-.02em}
+  .brand p{font-size:10.5px;margin-top:2px}
+  .mobile-menu-btn{padding:11px 14px;font-size:13px}
+  nav.tabs.open #tabbar{grid-template-columns:repeat(2,minmax(0,1fr));padding-bottom:11px}
+  nav.tabs .tab{min-height:44px;font-size:12px;padding:10px 6px}
+}
 </style>
 </head>
 <body class="lang-ja no-ads">
@@ -397,6 +431,7 @@ body.no-ads .ad-slot{display:none!important}
     </div>
   </div>
 </header>
+<div class="mobile-menu-bar no-print" id="mobileMenuBar"><div class="wrap"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="tabbar"><span class="mmb-left"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><path d="M2 4h11M2 7.5h11M2 11h11" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span class="ko">메뉴</span><span class="ja">メニュー</span></span><span class="mmb-right"><b id="mobileMenuCurrent"><span class="ko">대시보드</span><span class="ja">ダッシュボード</span></b><svg class="chev" width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><path d="M3 4.75L6.5 8.25 10 4.75" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div></div>
 <nav class="tabs no-print">
   <div class="wrap tabbar" id="tabbar">
     <button class="tab active" data-screen="dashboard"><span class="ko">대시보드</span><span class="ja">ダッシュボード</span></button>
@@ -435,8 +470,9 @@ body.no-ads .ad-slot{display:none!important}
         <p class="screen-help"><span class="ko">현재 DB 기준 핵심 신호만 짧게 요약합니다.</span><span class="ja">現在DB基準の主要シグナルだけを要約します。</span></p>
         <div id="quickInsights" class="bar-list"></div>
       </div>
-      <div id="openDataCard" class="open-data-card compact-open-data">
-        <div class="row"><div><h3><span class="ko">전체 데이터 무료 공개</span><span class="ja">全データ無料公開</span></h3><p><span class="ko">CSV/JSON으로 내려받아 직접 검증할 수 있습니다. 구매 전 공식 발표와 대조하세요.</span><span class="ja">CSV/JSONで取得し自分で検証できます。購入前に公式発表をご確認ください。</span></p></div><div class="tools"><button class="btn secondary" id="dashCsvBtn"><span class="ko">CSV</span><span class="ja">CSV</span></button><button class="btn secondary" id="dashJsonBtn"><span class="ko">JSON</span><span class="ja">JSON</span></button></div></div>
+      <div class="card">
+        <h2><span class="ko">최근 10회 결과</span><span class="ja">直近10回結果</span></h2>
+        <div class="table-wrap"><table id="recentTable"></table></div>
       </div>
     </div>
 
@@ -452,7 +488,6 @@ body.no-ads .ad-slot{display:none!important}
     </div>
 
     <div class="grid cols-2 dashboard-flow-grid" style="margin-top:14px;align-items:start">
-      <div style="display:grid;gap:15px;align-content:start">
       <div class="card">
         <h2><span class="ko">번호별 본숫자 출현</span><span class="ja">本数字出現</span></h2>
         <p class="screen-help"><span class="ko">전체 기간 기준 출현 횟수입니다. 기간별 비교는 통계/상성 탭에서 확인하세요.</span><span class="ja">全期間基準の出現回数です。期間別比較は統計/相性タブで確認してください。</span></p>
@@ -468,11 +503,6 @@ body.no-ads .ad-slot{display:none!important}
           <div class="method-card"><span class="badge">FAQ</span><b><span class="ko">미니로또 자주 묻는 질문</span><span class="ja">ミニロトよくある質問（FAQ）</span></b><p><span class="ko">퀵픽과 자체 선택? 연번은 나오기 어렵다?</span><span class="ja">クイックピックと自選は？連番は出にくい？</span></p><a href="blog/faq.html"><span class="ko">읽기 →</span><span class="ja">読む →</span></a></div>
         </div>
         <p class="right" style="margin:10px 0 0"><a href="blog/index.html"><span class="ko">칼럼 목록 전체 보기 →</span><span class="ja">コラム一覧をすべて見る →</span></a></p>
-      </div>
-      </div>
-      <div class="card">
-        <h2><span class="ko">최근 10회 결과</span><span class="ja">直近10回結果</span></h2>
-        <div class="table-wrap"><table id="recentTable"></table></div>
       </div>
     </div>
     <!-- 광고자리2 [본문 중간] : 애드센스 승인 후 data-ad-slot 을 실제 광고단위 번호로 교체 -->
@@ -592,7 +622,7 @@ body.no-ads .ad-slot{display:none!important}
     <div class="card" style="margin-top:14px">
       <h2><span class="ko">초보자가 자주 묻는 질문</span><span class="ja">初心者のよくある質問</span></h2>
       <details class="guide-detail"><summary><span class="ko">이 도구를 쓰면 더 잘 맞나요?</span><span class="ja">このツールを使うと当たりやすくなりますか？</span></summary><div class="body"><span class="ko">아닙니다. 추첨은 무작위라 어떤 방법이든 확률은 같습니다. 이 도구는 과거 데이터를 정리하고 조건을 검증해서, 사용자가 납득하며 숫자를 고르게 돕는 보조 도구입니다.</span><span class="ja">いいえ。抽せんは無作為なので、どの方法でも確率は同じです。このツールは過去データを整理し条件を検証して、利用者が納得して数字を選ぶ助けをする補助道具です。</span></div></details>
-      <details class="guide-detail"><summary><span class="ko">무료인가요? 회원가입은?</span><span class="ja">無料ですか？会員登録は？</span></summary><div class="body"><span class="ko">완전 무료이며 회원가입도 없습니다. 데이터 전체는 대시보드의 "전체 데이터 무료 공개" 카드에서 CSV/JSON으로 내려받을 수 있습니다.</span><span class="ja">完全無料で会員登録もありません。データ全体はダッシュボードの「全データ無料公開」カードからCSV/JSONで取得できます。</span></div></details>
+      <details class="guide-detail"><summary><span class="ko">무료인가요? 회원가입은?</span><span class="ja">無料ですか？会員登録は？</span></summary><div class="body"><span class="ko">완전 무료이며 회원가입도 없습니다. 데이터 전체는 "데이터" 탭에서 확인할 수 있습니다. CSV/JSON으로도 내려받을 수 있습니다.</span><span class="ja">完全無料で会員登録もありません。データ全体は「データ」タブで確認でき、CSV/JSONでも取得できます。</span></div></details>
       <details class="guide-detail"><summary><span class="ko">데이터는 정확한가요?</span><span class="ja">データは正確ですか？</span></summary><div class="body"><span class="ko">공개 결과를 바탕으로 매주 자동 갱신합니다. 다만 비공식이므로 구매·환급 전에는 반드시 공식 발표로 최종 확인하세요.</span><span class="ja">公開結果をもとに毎週自動更新しています。ただし非公式のため、購入・換金前には必ず公式発表で最終確認してください。</span></div></details>
       <details class="guide-detail"><summary><span class="ko">추천 번호를 알려주나요?</span><span class="ja">おすすめの数字を教えてくれますか？</span></summary><div class="body"><span class="ko">특정 번호를 추천하지 않습니다. 합계·홀짝·제외 숫자 같은 조건을 직접 정해서 조합을 만드는 것이 기본 사용법입니다. 처음이라면 초기값(균형형·10구) 그대로 생성해 보세요.</span><span class="ja">特定の数字は推薦しません。合計・奇偶・除外数字などの条件を自分で決めて組み合わせを作るのが基本の使い方です。初めてなら初期値（バランス・10口）のまま生成してみてください。</span></div></details>
     </div>
@@ -648,7 +678,7 @@ body.no-ads .ad-slot{display:none!important}
     <div class="card" style="margin-top:14px">
       <div class="tools" style="justify-content:space-between">
         <h2 style="margin:0"><span class="ko">전체 결과 DB</span><span class="ja">全結果DB</span></h2>
-        <div class="tools"><div><input id="dataSearch" class="input" placeholder="회차/날짜/번호 검색 / 回・日付・数字検索" style="width:260px"><span class="dataSearchHelp"><span class="ko">예: 1397, 2026/7, 03 14 31</span><span class="ja">例: 1397, 2026/7, 03 14 31</span></span></div><select id="dataLimit" class="select" style="width:120px"><option>50</option><option selected>100</option><option>300</option><option>1500</option><option value="all">ALL</option></select></div>
+        <div class="tools"><div><input id="dataSearch" class="input" placeholder="회차/날짜/번호 검색 / 回・日付・数字検索" style="width:260px"><span class="dataSearchHelp"><span class="ko">예: 1397, 2026/7, 03 14 31</span><span class="ja">例: 1397, 2026/7, 03 14 31</span></span></div><select id="dataLimit" class="select" style="width:120px"><option>50</option><option selected>100</option><option>300</option><option>1500</option><option value="all">ALL</option></select><button class="btn secondary" id="dashCsvBtn" title="全データをCSVでダウンロード">CSV</button><button class="btn secondary" id="dashJsonBtn" title="全データをJSONでダウンロード">JSON</button></div>
       </div>
       <div class="table-wrap" style="margin-top:12px"><table id="dataTable"></table></div>
     </div>
@@ -1627,6 +1657,25 @@ function applySelectLanguage(lang){
   Object.entries(ph).forEach(([id,[v]])=>{const el=$(id); if(el) el.placeholder=v;});
 }
 function switchScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===`screen-${id}`)); document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.screen===id)); if(id==='print') renderPrintList();}
+const _ssCore=switchScreen;
+switchScreen=function(id){
+  _ssCore(id);
+  const tb=document.querySelector('.tab[data-screen="'+id+'"]');
+  if(tb){const pairs=[['#mobileMenuCurrent .ja','.ja'],['#mobileMenuCurrent .ko','.ko']];
+    pairs.forEach(([cq,sq])=>{const c=document.querySelector(cq),s=tb.querySelector(sq); if(c&&s)c.textContent=s.textContent;});}
+  const navEl=document.querySelector('nav.tabs'),mb=document.getElementById('mobileMenuBtn');
+  if(navEl&&navEl.classList.contains('open')){navEl.classList.remove('open'); if(mb){mb.classList.remove('open'); mb.setAttribute('aria-expanded','false');}}
+};
+(function(){
+  const mb=document.getElementById('mobileMenuBtn'),navEl=document.querySelector('nav.tabs');
+  if(!mb||!navEl) return;
+  mb.addEventListener('click',()=>{const o=navEl.classList.toggle('open'); mb.classList.toggle('open',o); mb.setAttribute('aria-expanded',o?'true':'false');});
+  document.addEventListener('click',e=>{
+    if(!navEl.classList.contains('open')) return;
+    if(navEl.contains(e.target)||mb.contains(e.target)) return;
+    navEl.classList.remove('open'); mb.classList.remove('open'); mb.setAttribute('aria-expanded','false');
+  });
+})();
 function setLang(lang){if(!FEATURE_KOREAN_UI && lang!=='ja') lang='ja'; if(!['ja','ko'].includes(lang)) lang='ja'; state.lang=lang; document.documentElement.lang=lang; document.title = lang==='ko' ? '미니로또 분석 내비 | 무료 미니로또 분석·통계·백테스트' : 'ミニロト分析ナビ | 無料ミニロト分析・統計・バックテスト'; document.body.classList.remove('lang-dual','lang-ko','lang-ja'); document.body.classList.add(`lang-${lang}`); if(!FEATURE_KOREAN_UI) document.body.classList.add('ja-only'); else document.body.classList.remove('ja-only'); applySelectLanguage(lang); try{localStorage.setItem('j-mini-lotto-lang',lang)}catch(e){} const lm=$('langMode'); if(lm && lm.value!==lang) lm.value=lang;}
 function initManualNext(){const latest=state.data[state.data.length-1]; $('manualDraw').value=latest.draw+1; $('manualDate').value=''; ['N1','N2','N3','N4','N5','Bonus'].forEach(x=>$(`manual${x}`).value='');}
 function manualSave(){const row={draw:Number($('manualDraw').value),date:$('manualDate').value.trim(),nums:['N1','N2','N3','N4','N5'].map(x=>Number($(`manual${x}`).value)),bonus:Number($('manualBonus').value)}; const norm=normalizeData([row]); if(!norm.length){toast(label('입력값을 확인하세요. 본숫자 5개는 중복 없이 1~31, BO도 1~31이어야 합니다.', '入力値を確認してください。本数字5個は重複なし1〜31、BOも1〜31です。'),4500); return;} const map=new Map(state.data.map(r=>[r.draw,r])); map.set(norm[0].draw,norm[0]); state.data=normalizeData([...map.values()]); saveData(); renderAll(); toast(label('저장했습니다.', '保存しました。'));}
