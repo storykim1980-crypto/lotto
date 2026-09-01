@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-08-25T11:59:51.287588+00:00",
+  "updatedAt": "2026-09-01T15:32:02.708483+00:00",
   "source": "backnumber-table",
   "fetchErrors": [
     "mizuhobank: 403 Client Error: Forbidden for url: https://www.mizuhobank.co.jp/takarakuji/check/loto/miniloto/index.html"
   ],
-  "latestDraw": 1401,
-  "latestDate": "2026/8/25",
+  "latestDraw": 1402,
+  "latestDate": "2026/9/1",
   "changed": true,
   "updatedDraws": [
-    1401
+    1402
   ],
-  "previousLatestDraw": 1400
+  "previousLatestDraw": 1401
 }
